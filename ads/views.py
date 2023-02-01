@@ -105,12 +105,7 @@ class AdvertisementView(View):
         :return: JsonResponse
         """
         advertisement_data = json.loads(request.body)
-        advertisement = Advertisement.objects.create(name=advertisement_data['name'],
-                                                     author=advertisement_data['author'],
-                                                     price=advertisement_data['price'],
-                                                     description=advertisement_data['description'],
-                                                     address=advertisement_data['address'],
-                                                     is_published=advertisement_data['is_published'])
+        advertisement = Advertisement.objects.create(**advertisement_data)
         return JsonResponse({
             'id': advertisement.id,
             'name': advertisement.name,
